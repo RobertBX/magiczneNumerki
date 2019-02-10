@@ -14,42 +14,40 @@ public class Main {
         input.close();
         String ext = FilenameUtils.getExtension(file.getPath());
 
-
         if (checkWhatsTheExtension(fileSignature).equals(ext)) {
             System.out.println("this is a " + ext + " file");
             return true;
+        } else if (checkWhatsTheExtension(fileSignature).equals("unknown data type")) {
+            throw new IllegalArgumentException("Unhandled data type");
         } else {
             System.out.println("extension is " + ext + " while actual extension is  " + checkWhatsTheExtension(fileSignature));
             return false;
         }
-
-
     }
 
-    
-    private String checkWhatsTheExtension ( int fileSignature){
-        if(fileSignature == 0xffd8){
-            return "jpg or jpeg";
-        }else if(fileSignature == 0xFEFF){
+    private String checkWhatsTheExtension(int fileSignature) {
+        if (fileSignature == 0xffd8) {
+            return "jpg";
+        } else if (fileSignature == 0xFEFF) {
             return "txt";
-        }else if(fileSignature == 0xEFBBBF){
+        } else if (fileSignature == 0xEFBBBF) {
             return "txt";
-        }else if(fileSignature == 0xFFFE){
+        } else if (fileSignature == 0xFFFE) {
             return "txt";
-        }else if(fileSignature == 0x47) {
+        } else if (fileSignature == 0x47) {
             return "gif";
-        }else if(fileSignature == 0x49) {
+        } else if (fileSignature == 0x49) {
             return "gif";
-        }else if(fileSignature == 0x46) {
+        } else if (fileSignature == 0x46) {
             return "gif";
-        }else if(fileSignature == 0x38) {
+        } else if (fileSignature == 0x38) {
             return "gif";
-        }else if(fileSignature == 0x39) {
+        } else if (fileSignature == 0x39) {
             return "gif";
-        }else if(fileSignature == 0x61) {
+        } else if (fileSignature == 0x61) {
             return "gif";
-        }else if(fileSignature == 0x37) {
+        } else if (fileSignature == 0x37) {
             return "gif";
-        }else return "unknown data type";
+        } else return "unknown data type";
     }
 }
