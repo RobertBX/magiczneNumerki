@@ -1,4 +1,4 @@
-import jdk.internal.instrumentation.Logger;
+
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.*;
@@ -6,7 +6,6 @@ import java.io.*;
 public class Main {
 
     public static void main(String[] args) {
-
     }
 
     public boolean isFileExtensionIsTrue(File file) throws IOException {
@@ -16,31 +15,40 @@ public class Main {
         String ext = FilenameUtils.getExtension(file.getPath());
 
 
-
-
-        if(fileSignature == 0xffd8){
-            if(ext.equals("jpg") || ext.equals("jpeg")){
-                System.out.println("this is a " + ext + " file");
-                return true;
-            }else {
-                System.out.println("extension is " + ext + " while actual extension is  "+ checkWhatsTheExtension(fileSignature));
-                return false;
-            }
-
-
+        if (checkWhatsTheExtension(fileSignature).equals(ext)) {
+            System.out.println("this is a " + ext + " file");
+            return true;
+        } else {
+            System.out.println("extension is " + ext + " while actual extension is  " + checkWhatsTheExtension(fileSignature));
+            return false;
         }
 
 
-        return false;
-
     }
 
+    
     private String checkWhatsTheExtension ( int fileSignature){
         if(fileSignature == 0xffd8){
             return "jpg or jpeg";
-        }else if(fileSignature ==0){
+        }else if(fileSignature == 0xFEFF){
+            return "txt";
+        }else if(fileSignature == 0xEFBBBF){
+            return "txt";
+        }else if(fileSignature == 0xFFFE){
             return "txt";
         }else if(fileSignature == 0x47) {
+            return "gif";
+        }else if(fileSignature == 0x49) {
+            return "gif";
+        }else if(fileSignature == 0x46) {
+            return "gif";
+        }else if(fileSignature == 0x38) {
+            return "gif";
+        }else if(fileSignature == 0x39) {
+            return "gif";
+        }else if(fileSignature == 0x61) {
+            return "gif";
+        }else if(fileSignature == 0x37) {
             return "gif";
         }else return "unknown data type";
     }
